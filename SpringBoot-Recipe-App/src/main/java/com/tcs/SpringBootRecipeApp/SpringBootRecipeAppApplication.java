@@ -1,7 +1,5 @@
 package com.tcs.SpringBootRecipeApp;
 
-import java.sql.Date;
-
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

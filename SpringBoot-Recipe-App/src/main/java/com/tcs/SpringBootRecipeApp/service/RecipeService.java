@@ -8,10 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.tcs.SpringBootRecipeApp.entity.Recipe;
 import com.tcs.SpringBootRecipeApp.repository.RecipeRepository;
-import com.tcs.SpringBootRecipeApp.service.RecipeService;
 
 @Service("recipeService")
-//@RequiredArgsConstructor
 public class RecipeService{
 
 	@Autowired
