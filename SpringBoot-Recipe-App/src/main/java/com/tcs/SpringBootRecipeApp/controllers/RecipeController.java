@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,6 +26,8 @@ import com.tcs.SpringBootRecipeApp.service.RecipeService;
 @RestController
 @RequestMapping("/recipe-portal")
 public class RecipeController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(RecipeController.class);
 
 	@Autowired
 	private RecipeService recipeService;
@@ -42,7 +46,7 @@ public class RecipeController {
     public ResponseEntity<Recipe> findById(@PathVariable Long id) {
         Optional<Recipe> recipeElement = recipeService.findById(id);
         if (!recipeElement.isPresent()) {
-            //log.error("Id " + id + " is not existed");
+            logger.error("Id " + id + " is not existed");
             ResponseEntity.badRequest().build();
         }
         return ResponseEntity.ok(recipeElement.get());
@@ -51,16 +55,16 @@ public class RecipeController {
     @PutMapping(value = "/{id}", consumes = "application/json;charset=UTF-8")
     public ResponseEntity<Recipe> update(@PathVariable Long id, @Valid @RequestBody Recipe Recipe) {
         if (!recipeService.findById(id).isPresent()) {
-            //log.error("Id " + id + " is not existed");
+        	logger.error("Id " + id + " is not existed");
             ResponseEntity.badRequest().build();
         }
         return ResponseEntity.ok(recipeService.save(Recipe));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(value = "/{id}", consumes = "application/json;charset=UTF-8")
     public ResponseEntity<Recipe> delete(@PathVariable Long id) {
         if (!recipeService.findById(id).isPresent()) {
-            //log.error("Id " + id + " is not existed");
+        	logger.error("Id " + id + " is not existed");
             ResponseEntity.badRequest().build();
         }
         recipeService.deleteById(id);
