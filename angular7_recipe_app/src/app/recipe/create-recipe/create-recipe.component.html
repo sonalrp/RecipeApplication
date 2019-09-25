@@ -1,0 +1,19 @@
+<form [formGroup]="createRecipeForm">
+  <div>
+    <input type="text" formControlName="recipeName" />
+    <!-- <input type="text" formControlName="creationdatenadtime" /> -->
+    <!-- <mat-form-field class="example-full-width">
+      <input matInput placeholder="" formControlName="recipeName">
+    </mat-form-field> -->
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>    
+    <input type="text" formControlName="veg" />
+    <input type="text" formControlName="noofppl" />
+    <input type="text" formControlName="listofingrediants" />
+    <input type="text" formControlName="cookinginstructions" />
+    <button type="button" (click)=create()>Create</button>
+  </div>
+</form>
